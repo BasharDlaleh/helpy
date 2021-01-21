@@ -14,8 +14,15 @@ class BusinessController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        Business::latest()->paginate(10);
+    { 
+        $businesses = Business::select('business_id', 'business_name','business_image')->orderBy("business_name")->paginate(10);
+        
+        $businesses = $businesses->map(function ($business) {
+           $business->business_image = '/storage/business/'.$business->business_image;
+           return $business;
+        });
+        
+        return response()->json($businesses);
     }
 
     /**

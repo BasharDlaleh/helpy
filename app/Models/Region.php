@@ -14,4 +14,16 @@ class Region extends Model
     protected $table = 'region';
 
     public $timestamps = false;
+    
+    public function city(){
+        
+        $this->hasMany(City::class, 'city_region');
+        
+    }
+    
+    public function client(){
+        
+        $this->hasMany(Client::class, 'client_region');
+        
+    }
 }

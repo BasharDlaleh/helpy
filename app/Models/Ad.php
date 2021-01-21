@@ -14,4 +14,10 @@ class Ad extends Model
     protected $table = 'ads';
 
     public $timestamps = false;
+    
+    public function client(){
+        
+        $this->belongsTo(Client::class, 'client_id');
+        
+    }
 }

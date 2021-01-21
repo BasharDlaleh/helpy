@@ -12,9 +12,16 @@ class Business2Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($business)
     {
+        $businesses2 = Business2::select('business_2_id', 'business_2_name', 'business_2_image')->where('business_1', $business)->get();
         
+        $businesses2 = $businesses2->map(function ($business) {
+           $business->business_image = '/storage/business2/'.$business->business_image;
+           return $business;
+        });
+        
+        return response()->json($businesses2);
     }
 
     /**

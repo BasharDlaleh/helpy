@@ -14,4 +14,16 @@ class Business extends Model
     protected $table = 'business';
 
     public $timestamps = false;
+    
+    public function business2(){
+        
+        $this->hasMany(Business2::class, 'business_1');
+        
+    }
+    
+    public function client(){
+        
+        $this->hasMany(Client::class, 'client_business');
+        
+    }
 }
