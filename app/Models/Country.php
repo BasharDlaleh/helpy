@@ -14,4 +14,10 @@ class Country extends Model
     protected $table = 'country';
 
     public $timestamps = false;
+    
+    public function region(){
+        
+        $this->hasMany(Region::class, 'region_country');
+        
+    }
 }

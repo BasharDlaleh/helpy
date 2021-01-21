@@ -26,4 +26,10 @@ class Region extends Model
         $this->hasMany(Client::class, 'client_region');
         
     }
+    
+    public function country(){
+        
+        $this->belongsTo(Country::class, 'region_country');
+        
+    }
 }

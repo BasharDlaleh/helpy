@@ -44,4 +44,10 @@ class Client extends Model
         $this->belongsTo(City::class, 'client_city');
         
     }
+    
+    public function favorite(){
+        
+        $this->hasMany(Favorite::class, 'client_id');
+        
+    }
 }

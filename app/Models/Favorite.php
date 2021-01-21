@@ -14,4 +14,10 @@ class Favorite extends Model
     protected $table = 'favorite';
 
     public $timestamps = false;
+    
+    public function client(){
+        
+        $this->belongsTo(Client::class, 'client_id');
+        
+    }
 }
