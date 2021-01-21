@@ -17,13 +17,13 @@ class Business extends Model
     
     public function business2(){
         
-        $this->hasMany(Business2::class, 'business_1');
+        return $this->hasMany(Business2::class, 'business_1', 'business_id');
         
     }
     
     public function client(){
         
-        $this->hasMany(Client::class, 'client_business');
+        return $this->hasMany(Client::class, 'client_business', 'business_id');
         
     }
 }

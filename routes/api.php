@@ -19,4 +19,4 @@ Route::get('/test', function (){
 });
 Route::get('/business', [BusinessController::class, 'index']);
 
-Route::get('/business2/{business}', [Business2Controller::class, 'index']);
+Route::get('/business/{business:business_id}', [BusinessController::class, 'show']);

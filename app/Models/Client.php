@@ -17,37 +17,37 @@ class Client extends Model
     
     public function ad(){
         
-        $this->hasOne(Ad::class, 'client_id');
+        return $this->hasOne(Ad::class, 'client_id', 'client_id');
         
     }
     
     public function business(){
         
-        $this->belongsTo(Business::class, 'client_business');
+        return $this->belongsTo(Business::class, 'client_business', 'business_id');
         
     }
     
     public function business2(){
         
-        $this->belongsTo(Business2::class, 'client_business_2');
+        return $this->belongsTo(Business2::class, 'client_business_2', 'business_2_id');
         
     }
     
     public function region(){
         
-        $this->belongsTo(Region::class, 'client_region');
+        return $this->belongsTo(Region::class, 'client_region', 'region_id');
         
     }
     
     public function city(){
         
-        $this->belongsTo(City::class, 'client_city');
+        return $this->belongsTo(City::class, 'client_city', 'city_id');
         
     }
     
     public function favorite(){
         
-        $this->hasMany(Favorite::class, 'client_id');
+        return $this->hasMany(Favorite::class, 'client_id', 'client_id');
         
     }
 }

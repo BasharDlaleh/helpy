@@ -17,19 +17,19 @@ class Region extends Model
     
     public function city(){
         
-        $this->hasMany(City::class, 'city_region');
+        return $this->hasMany(City::class, 'city_region', 'region_id');
         
     }
     
     public function client(){
         
-        $this->hasMany(Client::class, 'client_region');
+        return $this->hasMany(Client::class, 'client_region', 'region_id');
         
     }
     
     public function country(){
         
-        $this->belongsTo(Country::class, 'region_country');
+        return $this->belongsTo(Country::class, 'region_country', 'country_id');
         
     }
 }

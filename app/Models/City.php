@@ -17,13 +17,13 @@ class City extends Model
     
     public function region(){
         
-        $this->belongsTo(Region::class, 'city_region');
+        return $this->belongsTo(Region::class, 'city_region', 'region_id');
         
     }
     
     public function client(){
         
-        $this->hasMany(Client::class, 'client_city');
+        return $this->hasMany(Client::class, 'client_city', 'city_id');
         
     }
 }

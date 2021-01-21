@@ -17,7 +17,7 @@ class Ad extends Model
     
     public function client(){
         
-        $this->belongsTo(Client::class, 'client_id');
+        return $this->belongsTo(Client::class, 'client_id', 'client_id');
         
     }
 }
