@@ -14,6 +14,8 @@ class Favorite extends Model
     protected $table = 'favorite';
 
     public $timestamps = false;
+
+    protected $primaryKey = 'favorite_id';
     
     public function client(){
         

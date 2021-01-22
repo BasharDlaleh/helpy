@@ -14,6 +14,8 @@ class Business2 extends Model
     protected $table = 'business_2';
 
     public $timestamps = false;
+
+    protected $primaryKey = 'business_2_id';
     
     public function business(){
         

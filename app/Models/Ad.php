@@ -14,6 +14,8 @@ class Ad extends Model
     protected $table = 'ads';
 
     public $timestamps = false;
+
+    protected $primaryKey = 'ads_id';
     
     public function client(){
         

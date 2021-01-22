@@ -14,4 +14,6 @@ class Visit extends Model
     protected $table = 'visit';
 
     public $timestamps = false;
+
+    protected $primaryKey = 'visit_id';
 }

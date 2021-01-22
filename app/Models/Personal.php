@@ -14,4 +14,6 @@ class Personal extends Model
     protected $table = 'personal';
 
     public $timestamps = false;
+
+    protected $primaryKey = 'personal_id';
 }

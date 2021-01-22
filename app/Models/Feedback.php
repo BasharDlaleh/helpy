@@ -14,4 +14,6 @@ class Feedback extends Model
     protected $table = 'feedback';
 
     public $timestamps = false;
+
+    protected $primaryKey = 'feedback_id';
 }

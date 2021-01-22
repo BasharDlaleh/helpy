@@ -14,4 +14,6 @@ class Report extends Model
     protected $table = 'report';
 
     public $timestamps = false;
+
+    protected $primaryKey = 'report_id';
 }

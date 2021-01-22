@@ -14,6 +14,12 @@ class Client extends Model
     protected $table = 'client';
 
     public $timestamps = false;
+
+    protected $primaryKey = 'client_id';
+
+    protected $hidden = [
+        'client_password', 'client_date_entry', 'client_admin_entry', 'client_deleted', 'client_validate', 'client_owner', 'client_note', 'client_date'
+    ];
     
     public function ad(){
         
@@ -49,5 +55,40 @@ class Client extends Model
         
         return $this->hasMany(Favorite::class, 'client_id', 'client_id');
         
+    }
+
+    public function getClientImageAttribute($value)
+    {
+        return '/storage/client/'.$value;
+    }
+
+    public function getClientGallery1Attribute($value)
+    {
+        return '/storage/client_gallery/'.$value;
+    }
+
+    public function getClientGallery_1Attribute($value)
+    {
+        return $this->getClientGallery1Attribute($value);
+    }
+
+    public function getClientGallery2Attribute($value)
+    {
+        return '/storage/client_gallery/'.$value;
+    }
+
+    public function getClientGallery_2Attribute($value)
+    {
+        return $this->getClientGallery2Attribute($value);
+    }
+
+    public function getClientGallery3Attribute($value)
+    {
+        return '/storage/client_gallery/'.$value;
+    }
+
+    public function getClientGallery_3Attribute($value)
+    {
+        return $this->getClientGallery3Attribute($value);
     }
 }

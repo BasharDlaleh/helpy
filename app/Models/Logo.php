@@ -14,4 +14,6 @@ class Logo extends Model
     protected $table = 'logo';
 
     public $timestamps = false;
+
+    protected $primaryKey = 'logo_id';
 }

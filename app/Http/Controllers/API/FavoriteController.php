@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Favorite;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
@@ -25,7 +27,20 @@ class FavoriteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'client_id' => 'required|exists:client,client_id',
+        ];
+
+        $validated = Validator::make($request->all(), $rules);
+
+        if($validated->fails())
+        {
+            return response()->json(['error' => 'client not found'], 404);
+        }
+
+        Favorite::create(['client_id' => $request->client_id]);
+
+        return response()->json(['message' => 'added to favorite']);
     }
 
     /**

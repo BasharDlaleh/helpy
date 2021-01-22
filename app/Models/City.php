@@ -15,6 +15,8 @@ class City extends Model
 
     public $timestamps = false;
     
+    protected $primaryKey = 'city_id';
+
     public function region(){
         
         return $this->belongsTo(Region::class, 'city_region', 'region_id');

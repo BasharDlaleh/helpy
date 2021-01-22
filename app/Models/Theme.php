@@ -14,4 +14,6 @@ class Theme extends Model
     protected $table = 'theme';
 
     public $timestamps = false;
+
+    protected $primaryKey = 'theme_id';
 }

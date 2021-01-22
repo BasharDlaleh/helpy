@@ -26,6 +26,8 @@ class User extends Authenticatable
 
     public $timestamps = false;
 
+    protected $primaryKey = 'user_id';
+
     /**
      * The attributes that should be hidden for arrays.
      *

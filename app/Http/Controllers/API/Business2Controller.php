@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Business;
+use App\Models\Business2;
 use Illuminate\Http\Request;
 
 class Business2Controller extends Controller
 {
+    const paginate = 10;
+
     /**
      * Display a listing of the resource.
      *
@@ -34,9 +38,19 @@ class Business2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Business2 $business2)
     {
-        //
+        $clients = $business2->client()->select('client_id', 'client_date_entry', 'client_name', 'client_address', 'client_mobile1', 'client_image', 'client_star')
+        ->orderBy('client_star', 'DESC')->orderBy('client_date_entry', 'DESC')
+        ->orderBy('client_visible', 'DESC')->orderBy('client_date_entry', 'DESC')
+        ->paginate(self::paginate);
+        
+        $clients = $clients->map(function ($client) {
+           $client->client_image = '/storage/client/'.$client->client_image;
+           return $client;
+        });
+        
+        return response()->json($clients);
     }
 
     /**
