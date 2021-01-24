@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ClientController extends Controller
 {
@@ -86,5 +87,25 @@ class ClientController extends Controller
                                                 })->get();
 
         return response()->json($clients);
+    }
+
+    public function getProfile()
+    {  
+        return auth()->user()->client_detail;
+    }
+
+    public function updateProfile(Request $request)
+    {  
+        $request->validate([
+            'logo' => 'max:10240',
+            'gallery1' => 'max:10240',
+            'gallery2' => 'max:10240',
+            'gallery3' => 'max:10240',
+        ]);
+        
+        Storage::disk('local')->put('public/client/', 'Contents');
+
+        auth()->user()->update($request->only('logo', 'gallery1', 'gallery2', 'gallery3'));
+
     }
 }

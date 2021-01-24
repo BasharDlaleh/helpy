@@ -18,10 +18,10 @@ class BusinessController extends Controller
     { 
         $businesses = Business::select('business_id', 'business_name','business_image')->orderBy("business_name")->paginate(self::paginate);
         
-        $businesses = $businesses->map(function ($business) {
-           $business->business_image = '/storage/business/'.$business->business_image;
-           return $business;
-        });
+        // $businesses = $businesses->map(function ($business) {
+        //    $business->business_image = '/storage/business/'.$business->business_image;
+        //    return $business;
+        // });
         
         return response()->json($businesses);
     }
@@ -47,10 +47,10 @@ class BusinessController extends Controller
     { 
         $businesses2 = $business->business2()->select('business_2_id', 'business_2_name', 'business_2_image')->orderBy('business_2_name')->paginate(self::paginate);
         
-        $businesses2 = $businesses2->map(function ($business) {
-           $business->business_2_image = '/storage/business2/'.$business->business_image;
-           return $business;
-        });
+        // $businesses2 = $businesses2->map(function ($business) {
+        //    $business->business_2_image = '/storage/business2/'.$business->business_image;
+        //    return $business;
+        // });
         
         return response()->json($businesses2);
     }
@@ -76,5 +76,19 @@ class BusinessController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function showBusinessNames()
+    {
+        $businesses = Business::select('business_id', 'business_name')->orderBy("business_name")->get();
+        
+        return response()->json($businesses);
+    }
+
+    public function showBusiness2Names(Business $business)
+    { 
+        $businesses2 = $business->business2()->select('business_2_id', 'business_2_name')->orderBy('business_2_name')->get();
+        
+        return response()->json($businesses2);
     }
 }

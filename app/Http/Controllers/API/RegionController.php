@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Region;
 use Illuminate\Http\Request;
 
 class RegionController extends Controller
@@ -14,7 +15,7 @@ class RegionController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Region::all());
     }
 
     /**

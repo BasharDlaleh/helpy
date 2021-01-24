@@ -28,4 +28,9 @@ class Business2 extends Model
         return $this->hasMany(Client::class, 'client_business_2', 'business_2_id');
         
     }
+
+    public function getBusinessImageAttribute($value)
+    {
+        return '/storage/business2/'.$value;
+    }
 }

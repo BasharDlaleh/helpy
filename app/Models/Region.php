@@ -16,6 +16,10 @@ class Region extends Model
     public $timestamps = false;
 
     protected $primaryKey = 'region_id';
+
+    protected $hidden = [
+        'region_admin_entry', 'edit'
+    ];
     
     public function city(){
         
@@ -32,6 +36,12 @@ class Region extends Model
     public function country(){
         
         return $this->belongsTo(Country::class, 'region_country', 'country_id');
+        
+    }
+
+    public function clientTemp(){
+        
+        return $this->hasMany(ClientTemp::class, 'region', 'region_id');
         
     }
 }

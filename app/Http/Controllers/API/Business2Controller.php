@@ -45,10 +45,10 @@ class Business2Controller extends Controller
         ->orderBy('client_visible', 'DESC')->orderBy('client_date_entry', 'DESC')
         ->paginate(self::paginate);
         
-        $clients = $clients->map(function ($client) {
-           $client->client_image = '/storage/client/'.$client->client_image;
-           return $client;
-        });
+        // $clients = $clients->map(function ($client) {
+        //    $client->client_image = '/storage/client/'.$client->client_image;
+        //    return $client;
+        // });
         
         return response()->json($clients);
     }
@@ -75,4 +75,5 @@ class Business2Controller extends Controller
     {
         //
     }
+
 }
