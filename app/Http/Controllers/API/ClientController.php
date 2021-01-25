@@ -7,6 +7,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ClientController extends Controller
 {
@@ -46,28 +47,6 @@ class ClientController extends Controller
         return response()->json($client);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     public function fastSearch(Request $request)
     {
@@ -103,9 +82,47 @@ class ClientController extends Controller
             'gallery3' => 'max:10240',
         ]);
         
-        Storage::disk('local')->put('public/client/', 'Contents');
+        if ($request->hasFile('logo')) { 
+            $image      = $request->file('logo');  
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();  
 
-        auth()->user()->update($request->only('logo', 'gallery1', 'gallery2', 'gallery3'));
+            $img = Image::make($image);  
+            $img->resize(120, 120, function ($constraint) {
+                $constraint->aspectRatio();                  
+            }); 
+
+            Storage::disk('local')->put('public/client/'.$fileName, $img); 
+            
+            $path = $fileName;
+           
+            Client::where('client_id', 1)->first()->update(['client_image' => $path ]); 
+        }
+
+        if ($request->has('gallery')) { 
+            
+            foreach ( $request->input('gallery') as $key => $gallery ){ 
+                
+                $image      = $request->file('gallery.');    
+                $fileName   = time() . '.' . $image->getClientOriginalExtension();  
+                
+                $img = Image::make($image);  
+                $img->resize(120, 120, function ($constraint) {
+                     $constraint->aspectRatio();                  
+                }); 
+                
+                Storage::disk('local')->put('public/client_gallery/'.$fileName, $img); 
+            
+                $path = $fileName;
+           
+                Client::where('client_id', 1)->first()->update(['client_gallery'.$key => $path ]);
+            }
+            
+             
+
+            
+
+             
+        }
 
     }
 }
