@@ -84,7 +84,7 @@ class ClientController extends Controller
         
         if ($request->hasFile('logo')) { 
             $image      = $request->file('logo');  
-            $fileName   = time() . '.' . $image->getClientOriginalExtension();  
+            $fileName   = microtime() . '.' . $image->getClientOriginalExtension();  
 
             $img = Image::make($image);  
             $img->resize(120, 120, function ($constraint) {
@@ -98,12 +98,14 @@ class ClientController extends Controller
             Client::where('client_id', 1)->first()->update(['client_image' => $path ]); 
         }
 
-        if ($request->has('gallery')) { 
+        if ($request->has('gallery')) {  
             
-            foreach ( $request->input('gallery') as $key => $gallery ){ 
+            foreach ( $request->gallery as $key => $gallery ){ 
                 
-                $image      = $request->file('gallery.');    
-                $fileName   = time() . '.' . $image->getClientOriginalExtension();  
+                if($key > 2) continue;
+                
+                $image      = $request->file('gallery.'.$key);    
+                $fileName   = microtime() . '.' . $image->getClientOriginalExtension();  
                 
                 $img = Image::make($image);  
                 $img->resize(120, 120, function ($constraint) {
@@ -113,8 +115,10 @@ class ClientController extends Controller
                 Storage::disk('local')->put('public/client_gallery/'.$fileName, $img); 
             
                 $path = $fileName;
-           
-                Client::where('client_id', 1)->first()->update(['client_gallery'.$key => $path ]);
+                
+                $num=$key+1;
+                
+                auth()->user()->update(['client_gallery_'.$num => $path ]);
             }
             
              
