@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class ClientController extends Controller
 {
@@ -74,12 +75,12 @@ class ClientController extends Controller
     }
 
     public function updateProfile(Request $request)
-    {  
+    { 
         $request->validate([
-            'logo' => 'max:10240',
-            'gallery1' => 'max:10240',
-            'gallery2' => 'max:10240',
-            'gallery3' => 'max:10240',
+            'logo' => 'max:1024',
+            'gallery1' => 'max:1024',
+            'gallery2' => 'max:1024',
+            'gallery3' => 'max:1024',
         ]);
         
         if ($request->hasFile('logo')) { 
@@ -87,14 +88,17 @@ class ClientController extends Controller
             $fileName   = microtime() . '.' . $image->getClientOriginalExtension();  
 
             $img = Image::make($image);  
-            $img->resize(120, 120, function ($constraint) {
-                $constraint->aspectRatio();                  
-            }); 
 
             Storage::disk('local')->put('public/client/'.$fileName, $img); 
             
             $path = $fileName;
            
+            $current_image = Client::where('client_id', 1)->first()->client_image; 
+                
+            $current_image = Str::replaceFirst('/storage/client/', '', $current_image);
+            
+            if(Storage::disk('local')->has('public/client/'.$current_image)) Storage::delete('/public/client/'. $current_image);
+            
             Client::where('client_id', 1)->first()->update(['client_image' => $path ]); 
         }
 
@@ -108,25 +112,25 @@ class ClientController extends Controller
                 $fileName   = microtime() . '.' . $image->getClientOriginalExtension();  
                 
                 $img = Image::make($image);  
-                $img->resize(120, 120, function ($constraint) {
-                     $constraint->aspectRatio();                  
-                }); 
-                
+
                 Storage::disk('local')->put('public/client_gallery/'.$fileName, $img); 
             
                 $path = $fileName;
                 
-                $num=$key+1;
+                $num=$key+1; $culomn_gallery = 'client_gallery_'.$num;
+              
+                $current_image = Client::where('client_id', 1)->first()->{$culomn_gallery}; 
                 
-                auth()->user()->update(['client_gallery_'.$num => $path ]);
+                $current_image = Str::replaceFirst('/storage/client_gallery/', '', $current_image); 
+                
+                if(Storage::disk('local')->has('public/client_gallery/'.$current_image)) Storage::delete('/public/client_gallery/'. $current_image);
+                
+                Client::where('client_id', 1)->first()->update(['client_gallery_'.$num => $path ]);
             }
-            
-             
 
-            
-
-             
         }
+        
+        return response()->json(['message' => 'profile updated succesfully']);
 
     }
 }
