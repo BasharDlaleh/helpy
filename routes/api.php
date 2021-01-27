@@ -8,6 +8,8 @@ use App\Http\Controllers\API\Business2Controller;
 use App\Http\Controllers\API\ClientController;
 use App\Http\Controllers\API\FavoriteController;
 use App\Http\Controllers\API\RegionController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactUs;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +48,12 @@ Route::post('favorite', [FavoriteController::class, 'store']);
 Route::post('register', [AuthController::class, 'register']);
 
 Route::post('login', [AuthController::class, 'login']);
+
+Route::post('contact-us', function (Request $request){
+    
+    $contactInfo = $request->only(['client_name', 'client_email', 'client_tel']);
+    
+    Mail::to('admin@gmail.com')->send(new ContactUs($contactInfo));
+    
+    return response()->json(['message' => 'success']);
+});

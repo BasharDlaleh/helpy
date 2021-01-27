@@ -130,7 +130,7 @@ class ClientController extends Controller
 
         }
         
-        return response()->json(['message' => 'profile updated succesfully']);
+        return response()->json(['message' => 'success']);
 
     }
 }

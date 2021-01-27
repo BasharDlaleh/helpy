@@ -49,7 +49,7 @@ Description : get client profile details
 Url : /client-home
 Method : POST
 Parameters : 
-Query : logo = client_image
+Query : logo = client_image , gallery = array of gallery images
 Description : update client profile
 
 Url : /fast-search
@@ -79,5 +79,11 @@ Description : register new client
 Url : /login
 Method : POST
 Parameters : 
-Query : phone = clint_mobile1 , password = client_password
+Query : phone = client_mobile1 , password = client_password
 Description : login client
+
+Url : /contact-us
+Method : POST
+Parameters : 
+Query : client_name = clint_name , client_email = client_email , client_tel = client_tel
+Description : contact us request
