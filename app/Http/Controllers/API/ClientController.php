@@ -93,13 +93,13 @@ class ClientController extends Controller
             
             $path = $fileName;
            
-            $current_image = Client::where('client_id', 1)->first()->client_image; 
+            $current_image = auth()->user()->client_image; 
                 
             $current_image = Str::replaceFirst('/storage/client/', '', $current_image);
             
             if(Storage::disk('local')->has('public/client/'.$current_image)) Storage::delete('/public/client/'. $current_image);
             
-            Client::where('client_id', 1)->first()->update(['client_image' => $path ]); 
+            auth()->user()->update(['client_image' => $path ]); 
         }
 
         if ($request->has('gallery')) {  
@@ -119,13 +119,13 @@ class ClientController extends Controller
                 
                 $num=$key+1; $culomn_gallery = 'client_gallery_'.$num;
               
-                $current_image = Client::where('client_id', 1)->first()->{$culomn_gallery}; 
+                $current_image = auth()->user()->{$culomn_gallery}; 
                 
                 $current_image = Str::replaceFirst('/storage/client_gallery/', '', $current_image); 
                 
                 if(Storage::disk('local')->has('public/client_gallery/'.$current_image)) Storage::delete('/public/client_gallery/'. $current_image);
                 
-                Client::where('client_id', 1)->first()->update(['client_gallery_'.$num => $path ]);
+                auth()->user()->update(['client_gallery_'.$num => $path ]);
             }
 
         }

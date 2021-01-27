@@ -44,7 +44,7 @@ class AuthController extends Controller
 
         $user = Client::where('client_mobile1', $request->phone)->first();
 
-        if (! $user || ! $request->password == $user->client_password) {
+        if (! $user || ! Hash::check($request->password , $user->client_password)) {
             throw ValidationException ::withMessages([
                 'password' => ['The provided credentials are incorrect.'],
             ]);
