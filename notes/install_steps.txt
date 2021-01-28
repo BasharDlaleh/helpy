@@ -1,4 +1,4 @@
-1. create DB and name it 'helpy'
+1. create a mysql DB and name it 'helpy'
 
 2. import the helpy.sql file into the above created DB
 
