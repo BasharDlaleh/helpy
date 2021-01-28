@@ -1,0 +1,11 @@
+1. create DB and name it 'helpy'
+
+2. import the helpy.sql file into the above created DB
+
+3. open cmd or terminal
+
+4. run this in terminal =>     #cd /your/laravel/project/path
+ 
+5. run this in terminal =>     #composer install       (make sure composer is installed in your machine before you run this)
+
+6. run this in terminal =>     #php artisan migrate --seed     (make sure php is installed in your machine before you run this)
