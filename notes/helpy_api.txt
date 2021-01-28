@@ -4,11 +4,15 @@ Parameters :
 Query :
 Description : get all regions
 
+#################
+
 Url : /business
 Method : GET
 Parameters : 
 Query : page = page_number , limit = number_of_items
 Description : get all businesses
+
+################
 
 Url : /business/{business}
 Method : GET
@@ -16,11 +20,15 @@ Parameters : {business} = business_id
 Query : page = page_number , limit = number_of_items
 Description : get all sub-businesses of some business
 
+#################
+
 Url : /business-names
 Method : GET
 Parameters : 
 Query :
 Description : get all businesses' names
+
+#################
 
 Url : /business2-names/{business}
 Method : GET
@@ -28,11 +36,15 @@ Parameters : {business} = business_id
 Query :
 Description : get all sub-businesses' names of some business
 
+#################
+
 Url : /business2/{business2}
 Method : GET
 Parameters : {business2} = business_2_id
 Query : page = page_number , limit = number_of_items
 Description : get all clients info of some sub-business
+
+#################
 
 Url : /client/{client}
 Method : GET
@@ -40,11 +52,15 @@ Parameters : {client} = client_id
 Query :
 Description : get some client's info
 
+#################
+
 Url : /client-home
 Method : GET
 Parameters : 
 Query : 
 Description : get client profile details
+
+#################
 
 Url : /client-home
 Method : POST
@@ -52,11 +68,15 @@ Parameters :
 Query : logo = client_image , gallery = array of gallery images
 Description : update client profile
 
+#################
+
 Url : /fast-search
 Method : GET
 Parameters : 
 Query : search = the search pattern
 Description : fast search in clients
+
+#################
 
 Url : /custom-search
 Method : GET
@@ -64,11 +84,15 @@ Parameters :
 Query : client_region = region_id , client_business = business_id , client_business2 = business_2_id , search = the search pattern
 Description : custom search in clients
 
+#################
+
 Url : /favorite
 Method : POST
 Parameters : 
 Query : client_id = client_id
 Description : add client to favorite
+
+#################
 
 Url : /register
 Method : POST
@@ -76,17 +100,23 @@ Parameters :
 Query : name = business_name , personal_name = client_name , region = region_id , tel = client_phone
 Description : register new client
 
+#################
+
 Url : /login
 Method : POST
 Parameters : 
 Query : phone = client_mobile1 , password = client_password
 Description : login client
 
+#################
+
 Url : /logout
 Method : GET
 Parameters : 
 Query : 
 Description : logout client
+
+#################
 
 Url : /contact-us
 Method : POST
