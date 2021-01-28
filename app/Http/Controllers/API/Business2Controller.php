@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class Business2Controller extends Controller
 {
-    const paginate = 10;
 
     /**
      * Display a listing of the resource.
@@ -44,14 +43,14 @@ class Business2Controller extends Controller
         $clients = $business2->client()->select('client_id', 'client_date_entry', 'client_name', 'client_address', 'client_mobile1', 'client_image', 'client_star')
         ->orderBy('client_star', 'DESC')->orderBy('client_date_entry', 'DESC')
         ->orderBy('client_visible', 'DESC')->orderBy('client_date_entry', 'DESC')
-        ->paginate(self::paginate);
+        ->paginate($request->limit);
         
         else
         $clients = $business2->client()->select('client_id', 'client_date_entry', 'client_name', 'client_address', 'client_mobile1', 'client_image', 'client_star')
         ->where('client_region', $request->region_id)
         ->orderBy('client_star', 'DESC')->orderBy('client_date_entry', 'DESC')
         ->orderBy('client_visible', 'DESC')->orderBy('client_date_entry', 'DESC')
-        ->paginate(self::paginate);
+        ->paginate($request->limit);
         
         
         

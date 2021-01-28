@@ -7,13 +7,13 @@ Description : get all regions
 Url : /business
 Method : GET
 Parameters : 
-Query :
+Query : page = page_number , limit = number_of_items
 Description : get all businesses
 
 Url : /business/{business}
 Method : GET
 Parameters : {business} = business_id
-Query :
+Query : page = page_number , limit = number_of_items
 Description : get all sub-businesses of some business
 
 Url : /business-names
@@ -31,8 +31,8 @@ Description : get all sub-businesses' names of some business
 Url : /business2/{business2}
 Method : GET
 Parameters : {business2} = business_2_id
-Query :
-Description : get all clients names of some sub-business
+Query : page = page_number , limit = number_of_items
+Description : get all clients info of some sub-business
 
 Url : /client/{client}
 Method : GET
@@ -81,6 +81,12 @@ Method : POST
 Parameters : 
 Query : phone = client_mobile1 , password = client_password
 Description : login client
+
+Url : /logout
+Method : GET
+Parameters : 
+Query : 
+Description : logout client
 
 Url : /contact-us
 Method : POST

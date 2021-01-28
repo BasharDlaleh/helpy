@@ -49,6 +49,8 @@ Route::post('register', [AuthController::class, 'register']);
 
 Route::post('login', [AuthController::class, 'login']);
 
+Route::middleware('auth:sanctum')->get('logout', [AuthController::class, 'logout']);
+
 Route::post('contact-us', function (Request $request){
     
     $contactInfo = $request->only(['client_name', 'client_email', 'client_tel']);
