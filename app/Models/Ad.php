@@ -22,4 +22,9 @@ class Ad extends Model
         return $this->belongsTo(Client::class, 'client_id', 'client_id');
         
     }
+
+    public function getAdsImageAttribute($value)
+    {
+        return '/storage/ads/'.$value;
+    }
 }

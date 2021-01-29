@@ -9,3 +9,11 @@
 5. run this in terminal =>     #composer install       (make sure composer is installed in your machine before you run this)
 
 6. run this in terminal =>     #php artisan migrate --seed     (make sure php is installed in your machine before you run this)
+
+7. run this in terminal =>     #php artisan storage:link
+
+8. run this in terminal =>     #php artisan serve
+
+9. now you can access the API at http://localhost:8000
+
+10. please note that the password for all test clients is 'password123'

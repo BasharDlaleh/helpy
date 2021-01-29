@@ -6,6 +6,7 @@ use App\Models\Client;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ClientFactory extends Factory
 {
@@ -37,7 +38,8 @@ class ClientFactory extends Factory
             'client_deleted' => rand(0,1),
             'client_date_entry' => $date->addDays(rand(1, 300))->format('Y-m-d H:i:s'),
             'client_date' => Carbon::now(),
-            'client_region' => $this->faker->randomElement($regionIDs)
+            'client_region' => $this->faker->randomElement($regionIDs),
+            'client_password' => Hash::make('password123') 
         ];
     }
 }

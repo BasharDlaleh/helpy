@@ -8,6 +8,7 @@ use App\Http\Controllers\API\Business2Controller;
 use App\Http\Controllers\API\ClientController;
 use App\Http\Controllers\API\FavoriteController;
 use App\Http\Controllers\API\RegionController;
+use App\Http\Controllers\API\AdController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactUs;
 
@@ -21,6 +22,8 @@ use App\Mail\ContactUs;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('ad', [AdController::class, 'index']);
+
 Route::get('region', [RegionController::class, 'index']);
 
 Route::get('business', [BusinessController::class, 'index']);

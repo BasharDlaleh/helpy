@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
         ClientSeeder::class,
+        AdsSeeder::class,
         ]);
         
         DB::table('client')->update(['client_image' => 'client.PNG']);

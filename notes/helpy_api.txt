@@ -1,3 +1,11 @@
+Url : /ad
+Method : GET
+Parameters : 
+Query :
+Description : get the visible ad
+
+#################
+
 Url : /region
 Method : GET
 Parameters : 

@@ -15,7 +15,7 @@ class AdController extends Controller
      */
     public function index()
     {
-        return response()->json(Ad::where(["ads_visible" => 1, "ads_visible" => 0])->get());
+        return response()->json(Ad::where(["ads_visible" => 1, "ads_deleted" => 0])->first());
     }
 
     /**
