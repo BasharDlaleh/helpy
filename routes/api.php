@@ -58,7 +58,7 @@ Route::post('contact-us', function (Request $request){
     
     $contactInfo = $request->only(['client_name', 'client_email', 'client_tel']);
     
-    Mail::to('admin@gmail.com')->send(new ContactUs($contactInfo));
+    Mail::to('bb556119@gmail.com')->send(new ContactUs($contactInfo));
     
     return response()->json(['message' => 'success']);
 });

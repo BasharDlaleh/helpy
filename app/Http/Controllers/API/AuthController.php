@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthController extends Controller
 {
@@ -57,8 +58,11 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(){
-        auth()->user()->tokens()->delete();
+    public function logout(Request $request){ 
+
+        $tokenId = PersonalAccessToken::findToken($request->bearerToken())->id;
+
+        auth()->user()->tokens()->where('id', $tokenId)->delete();
 
         return response()->json(['message' => 'success']);
     }
