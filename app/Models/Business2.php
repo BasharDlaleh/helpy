@@ -29,8 +29,14 @@ class Business2 extends Model
         
     }
 
-    public function getBusinessImageAttribute($value)
+    public function getBusinessImage2Attribute($value)
     {
         return '/storage/business2/'.$value;
     }
+
+    public function getBusinessImage_2Attribute($value)
+    {
+        return $this->getBusinessImage2Attribute($value);
+    }
+    
 }
