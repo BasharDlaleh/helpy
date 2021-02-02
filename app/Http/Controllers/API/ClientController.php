@@ -50,9 +50,16 @@ class ClientController extends Controller
 
     public function fastSearch(Request $request)
     {
+        if($request->region_id == 0)
         $clients = Client::where('client_name', 'LIKE', '%'.$request->search.'%')
-                            ->orWhere('client_detail', 'LIKE', '%'.$request->search.'%') 
-                            ->get();
+                        ->orWhere('client_detail', 'LIKE', '%'.$request->search.'%')->get();
+
+        else
+        $clients = Client::where('client_region', $request->region_id)
+                            ->where(function($query) use ($request){
+                                $query->where('client_name', 'LIKE', '%'.$request->search.'%')
+                                ->orWhere('client_detail', 'LIKE', '%'.$request->search.'%'); 
+                            })->get();
 
         return response()->json($clients);
     }

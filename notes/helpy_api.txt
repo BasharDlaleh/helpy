@@ -30,19 +30,11 @@ Description : get all sub-businesses of some business
 
 #################
 
-Url : /business-names
+Url : /get-search-data
 Method : GET
 Parameters : 
 Query :
-Description : get all businesses' names
-
-#################
-
-Url : /business2-names/{business}
-Method : GET
-Parameters : {business} = business_id
-Query :
-Description : get all sub-businesses' names of some business
+Description : get all regions and businesses and sub-businesses
 
 #################
 
@@ -81,7 +73,7 @@ Description : update client profile
 Url : /fast-search
 Method : GET
 Parameters : 
-Query : search = the search pattern
+Query : search = the search pattern , region_id = region_id
 Description : fast search in clients
 
 #################

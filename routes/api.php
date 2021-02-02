@@ -30,9 +30,9 @@ Route::get('business', [BusinessController::class, 'index']);
 
 Route::get('business/{business}', [BusinessController::class, 'show']);
 
-Route::get('business-names', [BusinessController::class, 'showBusinessNames']);
+Route::get('get-search-data', [BusinessController::class, 'showSearchData']);
 
-Route::get('business2-names/{business}', [BusinessController::class, 'showBusiness2Names']);
+// Route::get('business2-names/{business}', [BusinessController::class, 'showBusiness2Names']);
 
 Route::get('business2/{business2}', [Business2Controller::class, 'show']);
 
