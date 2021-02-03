@@ -46,9 +46,7 @@ class AuthController extends Controller
         $user = Client::where('client_mobile1', $request->phone)->first();
 
         if (! $user || ! Hash::check($request->password , $user->client_password)) {
-            throw ValidationException ::withMessages([
-                'password' => ['The provided credentials are incorrect.'],
-            ]);
+            return response()->json(['message' => 'login failed']);
         }
 
         $authToken = $user->createToken('auth-token')->plainTextToken;

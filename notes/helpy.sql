@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 28, 2021 at 11:48 AM
--- Server version: 5.7.28-0ubuntu0.18.04.4
--- PHP Version: 7.4.1
+-- Host: 127.0.0.1
+-- Generation Time: Feb 03, 2021 at 07:28 PM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `helpy`
+-- Database: `ssssssss`
 --
 
 -- --------------------------------------------------------
@@ -34,8 +34,8 @@ CREATE TABLE `ads` (
   `ads_title` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `ads_visible` tinyint(1) NOT NULL,
   `ads_image` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `ads_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `ads_deleted` tinyint(1) NOT NULL DEFAULT '0'
+  `ads_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ads_deleted` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -69,7 +69,7 @@ CREATE TABLE `business` (
   `business_name` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `business_admin_entry` tinyint(4) NOT NULL,
   `business_image` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `edit` tinyint(2) NOT NULL DEFAULT '0'
+  `edit` tinyint(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -132,7 +132,7 @@ CREATE TABLE `business_2` (
   `business_1` smallint(6) NOT NULL,
   `business_2_name` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `business_2_admin_entry` tinyint(4) NOT NULL,
-  `edit` tinyint(4) NOT NULL DEFAULT '0',
+  `edit` tinyint(4) NOT NULL DEFAULT 0,
   `business_2_image` varchar(256) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -365,7 +365,7 @@ CREATE TABLE `city` (
   `city_name` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `city_admin_entry` tinyint(4) NOT NULL,
   `city_region` int(6) NOT NULL,
-  `edit` tinyint(1) NOT NULL DEFAULT '0'
+  `edit` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -393,9 +393,9 @@ CREATE TABLE `client` (
   `client_business_2` smallint(6) NOT NULL,
   `client_region` int(11) NOT NULL,
   `client_city` int(9) DEFAULT NULL,
-  `client_address` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `client_address` text CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `client_detail` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `client_visible` tinyint(1) NOT NULL DEFAULT '1',
+  `client_visible` tinyint(1) NOT NULL DEFAULT 1,
   `client_image` varchar(300) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `client_gallery_1` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `client_gallery_2` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
@@ -406,19 +406,19 @@ CREATE TABLE `client` (
   `client_mobile1` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `client_mobile2` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `client_mobile3` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `client_email` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `client_email` text CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `client_whatsapp` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `client_facebook` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `client_instagram` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `client_date_entry` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `client_date_entry` timestamp NULL DEFAULT current_timestamp(),
   `client_admin_entry` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `client_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `client_deleted` tinyint(1) NOT NULL DEFAULT 0,
   `client_validate` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `client_owner` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `client_note` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `client_view` int(11) NOT NULL DEFAULT '10',
+  `client_note` text CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `client_view` int(11) NOT NULL DEFAULT 10,
   `client_date` date NOT NULL,
-  `client_star` tinyint(1) NOT NULL DEFAULT '0',
+  `client_star` tinyint(1) NOT NULL DEFAULT 0,
   `client_password` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -434,7 +434,7 @@ CREATE TABLE `client_temp` (
   `tel` int(11) NOT NULL,
   `personal_name` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -476,8 +476,8 @@ CREATE TABLE `favorite` (
 CREATE TABLE `feedback` (
   `feedback_id` int(11) NOT NULL,
   `feedback_text` text COLLATE utf8_unicode_ci NOT NULL,
-  `feedback_date_entry` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `feedback_check` tinyint(1) NOT NULL DEFAULT '0',
+  `feedback_date_entry` timestamp NOT NULL DEFAULT current_timestamp(),
+  `feedback_check` tinyint(1) NOT NULL DEFAULT 0,
   `feedback_user` int(11) NOT NULL,
   `feedback_sub_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -493,7 +493,7 @@ CREATE TABLE `logo` (
   `logo_image` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `logo_title` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `logo_alt` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `edit` tinyint(4) NOT NULL DEFAULT '0'
+  `edit` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -521,8 +521,8 @@ CREATE TABLE `personal` (
   `personal_address` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `personal_logo` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `personal_logo_name_root` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `personal_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `edit` int(11) NOT NULL DEFAULT '0'
+  `personal_date` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `edit` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -543,7 +543,7 @@ CREATE TABLE `region` (
   `region_name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `region_country` int(11) NOT NULL,
   `region_admin_entry` tinyint(2) NOT NULL,
-  `edit` tinyint(1) NOT NULL DEFAULT '0'
+  `edit` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -579,7 +579,7 @@ CREATE TABLE `registerations` (
   `device_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `os` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `version` tinyint(3) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -593,8 +593,8 @@ CREATE TABLE `report` (
   `report_id` int(11) NOT NULL,
   `report_item` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `report_body` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `report_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `report_check` tinyint(1) NOT NULL DEFAULT '0'
+  `report_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `report_check` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -610,7 +610,7 @@ CREATE TABLE `theme` (
   `theme_header` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'row-table_no_image.png',
   `theme_table_row1` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'first-row_no_image.png',
   `theme_table_row2` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'first-row_2_no_image.png',
-  `edit` smallint(6) NOT NULL DEFAULT '0'
+  `edit` smallint(6) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -630,13 +630,13 @@ CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `user_name_helpy_control` varchar(40) COLLATE utf8_bin NOT NULL,
   `user_password_helpy_control` varchar(40) COLLATE utf8_bin NOT NULL,
-  `user_level` tinyint(4) NOT NULL DEFAULT '2',
-  `user_reg_edit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_level` tinyint(4) NOT NULL DEFAULT 2,
+  `user_reg_edit` timestamp NOT NULL DEFAULT current_timestamp(),
   `user_email` varchar(100) COLLATE utf8_bin NOT NULL,
   `user_image` varchar(1000) COLLATE utf8_bin NOT NULL DEFAULT 'user_no_image.png',
-  `visible` tinyint(1) NOT NULL DEFAULT '1',
+  `visible` tinyint(1) NOT NULL DEFAULT 1,
   `user_full_name` varchar(256) COLLATE utf8_bin NOT NULL,
-  `edit` tinyint(4) NOT NULL DEFAULT '0'
+  `edit` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -729,6 +729,7 @@ ALTER TABLE `client`
 -- Indexes for table `client_temp`
 --
 ALTER TABLE `client_temp`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `client_temp_region_region` (`region`);
 
 --
@@ -837,6 +838,12 @@ ALTER TABLE `city`
 --
 ALTER TABLE `client`
   MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `client_temp`
+--
+ALTER TABLE `client_temp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `country`
