@@ -73,7 +73,7 @@ Description : update client profile
 Url : /fast-search
 Method : GET
 Parameters : 
-Query : search = the search pattern , region_id = region_id
+Query : search = the search pattern , region_id = region_id , page = page_number , limit = number_of_items
 Description : fast search in clients
 
 #################
@@ -81,7 +81,7 @@ Description : fast search in clients
 Url : /custom-search
 Method : GET
 Parameters : 
-Query : client_region = region_id , client_business = business_id , client_business2 = business_2_id , search = the search pattern
+Query : client_region = region_id , client_business = business_id , client_business2 = business_2_id , search = the search pattern , page = page_number , limit = number_of_items
 Description : custom search in clients
 
 #################

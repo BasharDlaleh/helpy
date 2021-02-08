@@ -52,14 +52,14 @@ class ClientController extends Controller
     {
         if($request->region_id == 0)
         $clients = Client::where('client_name', 'LIKE', '%'.$request->search.'%')
-                        ->orWhere('client_detail', 'LIKE', '%'.$request->search.'%')->get();
+                        ->orWhere('client_detail', 'LIKE', '%'.$request->search.'%')->paginate($request->limit);
 
         else
         $clients = Client::where('client_region', $request->region_id)
                             ->where(function($query) use ($request){
                                 $query->where('client_name', 'LIKE', '%'.$request->search.'%')
                                 ->orWhere('client_detail', 'LIKE', '%'.$request->search.'%'); 
-                            })->get();
+                            })->paginate($request->limit);
 
         return response()->json($clients);
     }
@@ -70,7 +70,7 @@ class ClientController extends Controller
                                          ->where(function($query) use ($request){
                                                    $query->where('client_name', 'LIKE', '%'.$request->search.'%')
                                                          ->orWhere('client_detail', 'LIKE', '%'.$request->search.'%');
-                                                })->get();
+                                                })->paginate($request->limit);
 
         return response()->json($clients);
     }
