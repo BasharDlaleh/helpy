@@ -93,7 +93,7 @@ class ClientController extends Controller
             $image      = $request->file('logo');  
             $fileName   = microtime() . '.' . $image->getClientOriginalExtension();  
 
-            $img = Image::make($image);  
+            $img = Image::make($image->getRealPath());   $img->stream();
 
             Storage::disk('local')->put('public/client/'.$fileName, $img); 
             
@@ -113,7 +113,7 @@ class ClientController extends Controller
                 $image      = $request->file('gallery1');    
                 $fileName   = microtime() . '.' . $image->getClientOriginalExtension();  
                 
-                $img = Image::make($image);  
+                $img = Image::make($image->getRealPath());  $img->stream();
 
                 Storage::disk('local')->put('public/client_gallery/'.$fileName, $img); 
                               
@@ -131,7 +131,7 @@ class ClientController extends Controller
                 $image      = $request->file('gallery2');    
                 $fileName   = microtime() . '.' . $image->getClientOriginalExtension();  
                 
-                $img = Image::make($image);  
+                $img = Image::make($image->getRealPath());   $img->stream();
 
                 Storage::disk('local')->put('public/client_gallery/'.$fileName, $img); 
                               
@@ -149,7 +149,7 @@ class ClientController extends Controller
                 $image      = $request->file('gallery3');    
                 $fileName   = microtime() . '.' . $image->getClientOriginalExtension();  
                 
-                $img = Image::make($image);  
+                $img = Image::make($image->getRealPath());  $img->stream();
 
                 Storage::disk('local')->put('public/client_gallery/'.$fileName, $img); 
                               
