@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2021 at 07:28 PM
+-- Generation Time: Feb 09, 2021 at 06:30 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.4.13
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ssssssss`
+-- Database: `helpy_test`
 --
 
 -- --------------------------------------------------------
@@ -742,6 +742,7 @@ ALTER TABLE `country`
 -- Indexes for table `favorite`
 --
 ALTER TABLE `favorite`
+  ADD PRIMARY KEY (`favorite_id`),
   ADD KEY `favorite_client_id_foreign` (`client_id`);
 
 --
@@ -850,6 +851,12 @@ ALTER TABLE `client_temp`
 --
 ALTER TABLE `country`
   MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `favorite`
+--
+ALTER TABLE `favorite`
+  MODIFY `favorite_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `feedback`
