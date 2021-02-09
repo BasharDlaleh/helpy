@@ -35,6 +35,7 @@ class ContactUs extends Mailable
                         'clientName' => $this->contactInfo['client_name'],
                         'clientEmail' => $this->contactInfo['client_email'],
                         'clientTel' => $this->contactInfo['client_tel'],
+                        'clientMsg' => $this->contactInfo['message'],
                     ]);
     }
 }

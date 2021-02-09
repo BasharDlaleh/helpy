@@ -65,7 +65,7 @@ Description : get client profile details
 Url : /client-home
 Method : POST
 Parameters : 
-Query : logo = client_image , gallery = array of gallery images
+Query : logo = client_image , gallery1 = client_gallery_1 , gallery2 = client_gallery_2 , gallery3 = client_gallery_3
 Description : update client profile
 
 #################

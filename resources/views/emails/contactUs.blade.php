@@ -3,7 +3,8 @@
 
 Client name : {{$clientName}} <br>
 Client email : {{$clientEmail}} <br>
-Client tel : {{$clientTel}}
+Client tel : {{$clientTel}} <br>
+Client message : {{$clientMsg}}
 
 {{-- @component('mail::button', ['url' => ''])
 Button Text

@@ -103,38 +103,66 @@ class ClientController extends Controller
                 
             $current_image = Str::replaceFirst('/storage/client/', '', $current_image);
             
-            if(Storage::disk('local')->has('public/client/'.$current_image)) Storage::delete('/public/client/'. $current_image);
+            if(Storage::disk('local')->has('public/client/'.$current_image) && $current_image !== 'client.PNG') Storage::delete('/public/client/'. $current_image);
             
             auth()->user()->update(['client_image' => $path ]); 
         }
 
-        if ($request->has('gallery')) {  
-            
-            foreach ( $request->gallery as $key => $gallery ){ 
+        if ($request->hasFile('gallery1')) {  
                 
-                if($key > 2) continue;
-                
-                $image      = $request->file('gallery.'.$key);    
+                $image      = $request->file('gallery1');    
                 $fileName   = microtime() . '.' . $image->getClientOriginalExtension();  
                 
                 $img = Image::make($image);  
 
                 Storage::disk('local')->put('public/client_gallery/'.$fileName, $img); 
-            
-                $path = $fileName;
-                
-                $num=$key+1; $culomn_gallery = 'client_gallery_'.$num;
-              
-                $current_image = auth()->user()->{$culomn_gallery}; 
+                              
+                $current_image = auth()->user()->client_gallery_1; 
                 
                 $current_image = Str::replaceFirst('/storage/client_gallery/', '', $current_image); 
                 
-                if(Storage::disk('local')->has('public/client_gallery/'.$current_image)) Storage::delete('/public/client_gallery/'. $current_image);
+                if(Storage::disk('local')->has('public/client_gallery/'.$current_image) && $current_image !== 'client_gallery1.jpg') Storage::delete('/public/client_gallery/'. $current_image);
                 
-                auth()->user()->update(['client_gallery_'.$num => $path ]);
+                auth()->user()->update(['client_gallery_1' => $fileName ]);
             }
 
-        }
+            if ($request->hasFile('gallery2')) {  
+                
+                $image      = $request->file('gallery2');    
+                $fileName   = microtime() . '.' . $image->getClientOriginalExtension();  
+                
+                $img = Image::make($image);  
+
+                Storage::disk('local')->put('public/client_gallery/'.$fileName, $img); 
+                              
+                $current_image = auth()->user()->client_gallery_2; 
+                
+                $current_image = Str::replaceFirst('/storage/client_gallery/', '', $current_image); 
+                
+                if(Storage::disk('local')->has('public/client_gallery/'.$current_image) && $current_image !== 'client_gallery2.jpg') Storage::delete('/public/client_gallery/'. $current_image);
+                
+                auth()->user()->update(['client_gallery_2' => $fileName ]);
+            }
+
+            if ($request->hasFile('gallery3')) {  
+                
+                $image      = $request->file('gallery3');    
+                $fileName   = microtime() . '.' . $image->getClientOriginalExtension();  
+                
+                $img = Image::make($image);  
+
+                Storage::disk('local')->put('public/client_gallery/'.$fileName, $img); 
+                              
+                $current_image = auth()->user()->client_gallery_3; 
+                
+                $current_image = Str::replaceFirst('/storage/client_gallery/', '', $current_image); 
+                
+                if(Storage::disk('local')->has('public/client_gallery/'.$current_image) && $current_image !== 'client_gallery3.jpg') Storage::delete('/public/client_gallery/'. $current_image);
+                
+                auth()->user()->update(['client_gallery_3' => $fileName ]);
+            }
+
+        
         
         return response()->json(['message' => 'success']);
 
