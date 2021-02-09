@@ -121,5 +121,5 @@ Description : logout client
 Url : /contact-us
 Method : POST
 Parameters : 
-Query : client_name = clint_name , client_email = client_email , client_tel = client_tel
+Query : client_name = clint_name , client_email = client_email , client_tel = client_tel , message = client_msg
 Description : contact us request
